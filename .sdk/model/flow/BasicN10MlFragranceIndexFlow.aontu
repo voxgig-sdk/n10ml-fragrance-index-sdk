@@ -1,0 +1,44 @@
+# BasicN10MlFragranceIndexFlow
+
+main: kit: flow: BasicN10MlFragranceIndexFlow:
+{
+  entity: "n10_ml_fragrance_index",
+  kind: "basic",
+  name: "BasicN10MlFragranceIndexFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "n10_ml_fragrance_index_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "n10_ml_fragrance_index_ref01",
+        srcdatavar: "n10_ml_fragrance_index_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "n10_ml_fragrance_index01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-n10_ml_fragrance_index_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicN10MlFragranceIndexFlow"
+}

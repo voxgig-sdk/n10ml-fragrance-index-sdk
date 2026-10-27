@@ -1,0 +1,18 @@
+{
+  "files": [
+    "SUMMARY.md"
+  ],
+  "config": ".sdk/doc/qa/vale.ini",
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "False when this is a closest-match guess",
+      "Fragrance family, for example &quot;amber floral&quot;",
+      "Free perfume API and fragrance notes API from the 10ML Fragrance Index: 6,000+ perfumes and 249 houses with note pyramids, accords, families, similar scents, alternatives from other houses, notes explained and guides, curated by 10ML&#39;s fragrance editors. The same answers as the 10ML Perfume Finder MCP server at https://mcp.10ml.com/mcp. No API key, no sign-up, read-only JSON over GET.",
+      "Main accords, strongest first",
+      "One-sentence description by 10ML&#39;s fragrance editors",
+      "Results",
+      "The 10ML guide comparing this perfume with its alternatives"
+    ]
+  }
+}

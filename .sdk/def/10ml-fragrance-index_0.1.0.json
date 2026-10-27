@@ -1,0 +1,3648 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "10ML Fragrance Index API",
+    "version": "2.5.3",
+    "description": "Free perfume API and fragrance notes API from the 10ML Fragrance Index: 6,000+ perfumes and 249 houses with note pyramids, accords, families, similar scents, alternatives from other houses, notes explained and guides, curated by 10ML's fragrance editors. The same answers as the 10ML Perfume Finder MCP server at https://mcp.10ml.com/mcp. No API key, no sign-up, read-only JSON over GET.",
+    "contact": {
+      "name": "10ML Team",
+      "url": "https://10ml.com",
+      "email": "contact@10ml.com"
+    }
+  },
+  "externalDocs": {
+    "description": "Developer guide for the 10ML perfume API and MCP server",
+    "url": "https://10ml.com/perfume-api"
+  },
+  "servers": [
+    {
+      "url": "https://mcp.10ml.com"
+    }
+  ],
+  "tags": [
+    {
+      "name": "10ML Fragrance Index",
+      "description": "Perfume and fragrance notes API, curated by 10ML's fragrance editors"
+    }
+  ],
+  "paths": {
+    "/api/v1/perfumes": {
+      "get": {
+        "operationId": "searchPerfumes",
+        "summary": "Search perfumes",
+        "description": "Search the 10ML Fragrance Index for perfumes, colognes and fragrances (eau de parfum, eau de toilette, extrait) by name, house, notes, accords, family, audience, season, occasion or style. Natural language works: 'fresh citrus summer cologne for men' or 'warm vanilla scent for winter' is understood. Set iconic to true for only the editors' iconic, era-defining classics ('must-know perfumes for her', 'iconic winter scents'). Use when someone describes the scent they want, or names a perfume or house and you need matching fragrances. Not for the full profile of one known perfume (use get_perfume), not for 'something like X' (use find_similar_perfumes) and not for dupes or alternatives to a famous perfume (use find_perfume_alternatives). Returns ranked perfumes with house, year, family, accords, key notes, an editorial character line and 10ml.com links.",
+        "tags": [
+          "10ML Fragrance Index"
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "description": "Free text: a perfume name, house, notes or mood. Examples: \"fresh citrus summer for men\", \"Tom Ford oud\", \"vanilla gourmand for winter\"",
+            "schema": {
+              "type": "string",
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "house",
+            "in": "query",
+            "required": false,
+            "description": "Only perfumes from this house. Examples: \"Dior\", \"Maison Francis Kurkdjian\", \"MFK\", \"YSL\"",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "notes_include",
+            "in": "query",
+            "required": false,
+            "description": "Every listed note must be present. Examples: [\"oud\",\"sandalwood\"], [\"vanilla\"] Comma-separated list.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "notes_exclude",
+            "in": "query",
+            "required": false,
+            "description": "None of these notes may be present. Example: [\"patchouli\"] Comma-separated list.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "accords",
+            "in": "query",
+            "required": false,
+            "description": "Accords that must be present. Examples: [\"woody\",\"sweet\"], [\"fresh\",\"aquatic\"] Comma-separated list.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "family",
+            "in": "query",
+            "required": false,
+            "description": "Fragrance family. Examples: \"chypre\", \"fougere\", \"gourmand\", \"amber\", \"citrus\". Leave term empty in explain_perfume_term to list every family.",
+            "schema": {
+              "type": "string",
+              "maxLength": 40
+            }
+          },
+          {
+            "name": "gender",
+            "in": "query",
+            "required": false,
+            "description": "Audience the perfume is marketed to. men and women also include unisex perfumes.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "men",
+                "women",
+                "unisex"
+              ]
+            }
+          },
+          {
+            "name": "season",
+            "in": "query",
+            "required": false,
+            "description": "Season the perfume suits (fall is accepted in text queries as autumn).",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "spring",
+                "summer",
+                "autumn",
+                "winter"
+              ]
+            }
+          },
+          {
+            "name": "occasion",
+            "in": "query",
+            "required": false,
+            "description": "Occasion the perfume suits.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "daytime",
+                "office",
+                "casual",
+                "evening",
+                "date night",
+                "special occasion"
+              ]
+            }
+          },
+          {
+            "name": "style",
+            "in": "query",
+            "required": false,
+            "description": "A style word the scent should have.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "aquatic",
+                "boozy",
+                "clean",
+                "creamy",
+                "dark",
+                "floral",
+                "fresh",
+                "citrusy",
+                "fruity",
+                "gourmand",
+                "green",
+                "leathery",
+                "musky",
+                "powdery",
+                "sensual",
+                "smoky",
+                "spicy",
+                "sweet",
+                "woody"
+              ]
+            }
+          },
+          {
+            "name": "iconic",
+            "in": "query",
+            "required": false,
+            "description": "true = only the editors' iconic, era-defining classics (works with every other filter, and without a query)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Results per page.",
+            "schema": {
+              "default": 8,
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 20
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "description": "next_cursor from the previous page.",
+            "schema": {
+              "type": "string",
+              "maxLength": 64
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "description": "concise (default) or detailed (adds pyramid, seasons, occasions, longevity).",
+            "schema": {
+              "default": "concise",
+              "type": "string",
+              "enum": [
+                "concise",
+                "detailed"
+              ]
+            }
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": false,
+            "description": "Language of the 10ml.com links and labels.",
+            "schema": {
+              "default": "en",
+              "type": "string",
+              "enum": [
+                "en",
+                "de",
+                "fr",
+                "es",
+                "it",
+                "ro",
+                "el",
+                "hu",
+                "cs",
+                "pl",
+                "nl",
+                "pt",
+                "sv",
+                "da",
+                "fi",
+                "bg",
+                "hr"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "number",
+                      "description": "How many results matched in all"
+                    },
+                    "next_cursor": {
+                      "description": "Pass as cursor to get the next page; absent on the last page",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Guidance when the result is empty, partial or needs a follow-up tool",
+                      "type": "string"
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Stable Fragrance Index id, usable with get_perfume and find_similar_perfumes"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "house": {
+                            "type": "string"
+                          },
+                          "year": {
+                            "description": "Launch year when known",
+                            "type": "number"
+                          },
+                          "gender": {
+                            "type": "string",
+                            "enum": [
+                              "men",
+                              "women",
+                              "unisex"
+                            ]
+                          },
+                          "family": {
+                            "type": "string",
+                            "description": "Fragrance family, e.g. \"amber floral\""
+                          },
+                          "accords": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Main accords, strongest first"
+                          },
+                          "key_notes": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "The defining notes (empty when no pyramid is published)"
+                          },
+                          "character": {
+                            "type": "string",
+                            "description": "One-sentence description by 10ML's fragrance editors"
+                          },
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "try",
+                                    "guide",
+                                    "note"
+                                  ]
+                                },
+                                "title": {
+                                  "type": "string"
+                                },
+                                "url": {
+                                  "type": "string",
+                                  "description": "A 10ml.com link in the requested locale"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "title",
+                                "url"
+                              ],
+                              "additionalProperties": false
+                            },
+                            "description": "1-3 relevant 10ml.com links"
+                          },
+                          "profile": {
+                            "type": "string",
+                            "enum": [
+                              "full",
+                              "core"
+                            ]
+                          },
+                          "concentration": {
+                            "type": "string"
+                          },
+                          "pyramid": {
+                            "type": "object",
+                            "properties": {
+                              "top": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "heart": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "base": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "required": [
+                              "top",
+                              "heart",
+                              "base"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "seasons": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "occasions": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "styles": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "longevity": {
+                            "description": "1 (short) to 5 (very long)",
+                            "type": "number"
+                          },
+                          "projection": {
+                            "description": "1 (skin scent) to 5 (fills a room)",
+                            "type": "number"
+                          },
+                          "perfumers": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "other_versions": {
+                            "description": "Ids of other concentrations or flankers of the same perfume in the index",
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "house",
+                          "gender",
+                          "family",
+                          "accords",
+                          "key_notes",
+                          "character",
+                          "links",
+                          "profile"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "filters": {
+                      "type": "object",
+                      "propertyNames": {
+                        "type": "string"
+                      },
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "The filters applied, including ones read from the query text"
+                    },
+                    "relaxed": {
+                      "type": "boolean",
+                      "description": "True when no perfume matched every word and the closest partial matches are shown"
+                    },
+                    "source": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "total",
+                    "results",
+                    "filters",
+                    "relaxed",
+                    "source"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "total": 566,
+                  "results": [
+                    {
+                      "id": "paris-corner-ciao-citrus",
+                      "name": "Ciao Citrus",
+                      "house": "Paris Corner",
+                      "gender": "unisex",
+                      "family": "Citrus floral",
+                      "accords": [
+                        "citrus",
+                        "fresh",
+                        "white floral"
+                      ],
+                      "key_notes": [
+                        "orange blossom",
+                        "lily of the valley",
+                        "musk"
+                      ],
+                      "character": "Grapefruit and bergamot over orange blossom and lily of the valley, drying to musk, sandalwood and amber.",
+                      "links": [
+                        {
+                          "type": "try",
+                          "title": "Try it at 10ML",
+                          "url": "https://10ml.com/search?q=Paris%20Corner%20Ciao%20Citrus&utm_source=mcp&utm_medium=ai-assistant&utm_campaign=search_perfumes"
+                        },
+                        {
+                          "type": "note",
+                          "title": "Grapefruit on 10ML",
+                          "url": "https://10ml.com/notes/grapefruit?utm_source=mcp&utm_medium=ai-assistant&utm_campaign=search_perfumes"
+                        }
+                      ],
+                      "profile": "core"
+                    },
+                    {
+                      "id": "maison-crivelli-citrus-batikanga-edp",
+                      "name": "Citrus Batikanga",
+                      "house": "Maison Crivelli",
+                      "gender": "unisex",
+                      "family": "Citrus spicy",
+                      "accords": [
+                        "citrus",
+                        "fresh",
+                        "spicy"
+                      ],
+                      "key_notes": [
+                        "citrus",
+                        "bergamot"
+                      ],
+                      "character": "Bitter orange, kalamansi and bergamot are pressed fresh, then a pinch of chili and a vetiver-cedar base keep it lively.",
+                      "links": [
+                        {
+                          "type": "try",
+                          "title": "Try it at 10ML",
+                          "url": "https://10ml.com/search?q=Maison%20Crivelli%20Citrus%20Batikanga&utm_source=mcp&utm_medium=ai-assistant&utm_campaign=search_perfumes"
+                        },
+                        {
+                          "type": "note",
+                          "title": "Bergamot on 10ML",
+                          "url": "https://10ml.com/notes/bergamot?utm_source=mcp&utm_medium=ai-assistant&utm_campaign=search_perfumes"
+                        }
+                      ],
+                      "profile": "core"
+                    }
+                  ],
+                  "filters": {
+                    "gender": "men",
+                    "season": "summer"
+                  },
+                  "relaxed": false,
+                  "source": "10ML Fragrance Index",
+                  "next_cursor": "bzI"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found: the body carries closest suggestions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/perfumes/{id}": {
+      "get": {
+        "operationId": "getPerfume",
+        "summary": "Get one perfume",
+        "description": "The full Fragrance Index profile of one perfume, cologne or fragrance: house, launch year, audience, concentration, family, accords, note pyramid (top, heart and base notes), best seasons and occasions, longevity, projection and perfumers (full profiles), the editors' character description, five similar perfumes, editorial alternatives from other houses when they exist, related 10ML guides and links. Use when you know which perfume is meant and need facts about it ('tell me about Aventus', 'what notes are in Delina', 'what does Baccarat Rouge 540 smell like'). Not for browsing (use search_perfumes), not for comparing two or more (use compare_perfumes). Unknown names return the closest matches.",
+        "tags": [
+          "10ML Fragrance Index"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A perfume by name, optionally with its house, e.g. \"Baccarat Rouge 540\", \"Dior Sauvage\", \"Delina\". An id from another tool also works, e.g. \"creed-aventus\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "house",
+            "in": "query",
+            "required": false,
+            "description": "House, when the name alone is ambiguous. Example: \"Creed\"",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "description": "concise (default) or detailed (adds pyramid, seasons, occasions, longevity).",
+            "schema": {
+              "default": "concise",
+              "type": "string",
+              "enum": [
+                "concise",
+                "detailed"
+              ]
+            }
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": false,
+            "description": "Language of the 10ml.com links and labels.",
+            "schema": {
+              "default": "en",
+              "type": "string",
+              "enum": [
+                "en",
+                "de",
+                "fr",
+                "es",
+                "it",
+                "ro",
+                "el",
+                "hu",
+                "cs",
+                "pl",
+                "nl",
+                "pt",
+                "sv",
+                "da",
+                "fi",
+                "bg",
+                "hr"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "found": {
+                      "type": "boolean"
+                    },
+                    "exact": {
+                      "type": "boolean",
+                      "description": "False when this is a closest-match guess"
+                    },
+                    "perfume": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "Stable Fragrance Index id, usable with get_perfume and find_similar_perfumes"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "house": {
+                          "type": "string"
+                        },
+                        "year": {
+                          "description": "Launch year when known",
+                          "type": "number"
+                        },
+                        "gender": {
+                          "type": "string",
+                          "enum": [
+                            "men",
+                            "women",
+                            "unisex"
+                          ]
+                        },
+                        "family": {
+                          "type": "string",
+                          "description": "Fragrance family, e.g. \"amber floral\""
+                        },
+                        "accords": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "Main accords, strongest first"
+                        },
+                        "key_notes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The defining notes (empty when no pyramid is published)"
+                        },
+                        "character": {
+                          "type": "string",
+                          "description": "One-sentence description by 10ML's fragrance editors"
+                        },
+                        "links": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "try",
+                                  "guide",
+                                  "note"
+                                ]
+                              },
+                              "title": {
+                                "type": "string"
+                              },
+                              "url": {
+                                "type": "string",
+                                "description": "A 10ml.com link in the requested locale"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "title",
+                              "url"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "description": "1-3 relevant 10ml.com links"
+                        },
+                        "profile": {
+                          "type": "string",
+                          "enum": [
+                            "full",
+                            "core"
+                          ]
+                        },
+                        "concentration": {
+                          "type": "string"
+                        },
+                        "pyramid": {
+                          "type": "object",
+                          "properties": {
+                            "top": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "heart": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "base": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "required": [
+                            "top",
+                            "heart",
+                            "base"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "seasons": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "occasions": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "styles": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "longevity": {
+                          "description": "1 (short) to 5 (very long)",
+                          "type": "number"
+                        },
+                        "projection": {
+                          "description": "1 (skin scent) to 5 (fills a room)",
+                          "type": "number"
+                        },
+                        "perfumers": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "other_versions": {
+                          "description": "Ids of other concentrations or flankers of the same perfume in the index",
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "house",
+                        "gender",
+                        "family",
+                        "accords",
+                        "key_notes",
+                        "character",
+                        "links",
+                        "profile"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "house_info": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "country": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        },
+                        "style": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "type",
+                        "style"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "similar": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "house": {
+                            "type": "string"
+                          },
+                          "closeness": {
+                            "type": "string",
+                            "enum": [
+                              "very close",
+                              "similar vibe",
+                              "same spirit"
+                            ]
+                          },
+                          "shared_notes": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "url": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "house",
+                          "closeness",
+                          "shared_notes",
+                          "url"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "alternatives": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "house": {
+                            "type": "string"
+                          },
+                          "closeness": {
+                            "type": "string",
+                            "enum": [
+                              "very close",
+                              "similar vibe",
+                              "same spirit"
+                            ]
+                          },
+                          "why": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "closeness",
+                          "why"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "guides": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "try",
+                              "guide",
+                              "note"
+                            ]
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string",
+                            "description": "A 10ml.com link in the requested locale"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "title",
+                          "url"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "suggestions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Stable Fragrance Index id, usable with get_perfume and find_similar_perfumes"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "house": {
+                            "type": "string"
+                          },
+                          "year": {
+                            "description": "Launch year when known",
+                            "type": "number"
+                          },
+                          "gender": {
+                            "type": "string",
+                            "enum": [
+                              "men",
+                              "women",
+                              "unisex"
+                            ]
+                          },
+                          "family": {
+                            "type": "string",
+                            "description": "Fragrance family, e.g. \"amber floral\""
+                          },
+                          "accords": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Main accords, strongest first"
+                          },
+                          "key_notes": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "The defining notes (empty when no pyramid is published)"
+                          },
+                          "character": {
+                            "type": "string",
+                            "description": "One-sentence description by 10ML's fragrance editors"
+                          },
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "try",
+                                    "guide",
+                                    "note"
+                                  ]
+                                },
+                                "title": {
+                                  "type": "string"
+                                },
+                                "url": {
+                                  "type": "string",
+                                  "description": "A 10ml.com link in the requested locale"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "title",
+                                "url"
+                              ],
+                              "additionalProperties": false
+                            },
+                            "description": "1-3 relevant 10ml.com links"
+                          },
+                          "profile": {
+                            "type": "string",
+                            "enum": [
+                              "full",
+                              "core"
+                            ]
+                          },
+                          "concentration": {
+                            "type": "string"
+                          },
+                          "pyramid": {
+                            "type": "object",
+                            "properties": {
+                              "top": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "heart": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "base": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "required": [
+                              "top",
+                              "heart",
+                              "base"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "seasons": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "occasions": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "styles": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "longevity": {
+                            "description": "1 (short) to 5 (very long)",
+                            "type": "number"
+                          },
+                          "projection": {
+                            "description": "1 (skin scent) to 5 (fills a room)",
+                            "type": "number"
+                          },
+                          "perfumers": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "other_versions": {
+                            "description": "Ids of other concentrations or flankers of the same perfume in the index",
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "house",
+                          "gender",
+                          "family",
+                          "accords",
+                          "key_notes",
+                          "character",
+                          "links",
+                          "profile"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "source": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "found",
+                    "exact",
+                    "source"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "found": true,
+                  "exact": true,
+                  "perfume": {
+                    "id": "creed-aventus-edp",
+                    "name": "Aventus",
+                    "house": "Creed",
+                    "year": 2010,
+                    "gender": "men",
+                    "family": "Chypre fruity",
+                    "accords": [
+                      "fruity",
+                      "woody",
+                      "smoky"
+                    ],
+                    "key_notes": [
+                      "birch",
+                      "jasmine",
+                      "musk"
+                    ],
+                    "character": "A confident blend of juicy pineapple and smoky birch over mossy musk. The modern benchmark for a polished, success-flavoured masculine.",
+                    "links": [
+                      {
+                        "type": "try",
+                        "title": "Try it at 10ML",
+                        "url": "https://10ml.com/search?q=Creed%20Aventus&utm_source=mcp&utm_medium=ai-assistant&utm_campaign=get_perfume"
+                      },
+                      {
+                        "type": "guide",
+                        "title": "Creed Aventus Dupes 2026: 4 Clones vs the Original",
+                        "url": "https://10ml.com/guides/creed-aventus-dupes?utm_source=mcp&utm_medium=ai-assistant&utm_campaign=get_perfume"
+                      },
+                      {
+                        "type": "note",
+                        "title": "Jasmine on 10ML",
+                        "url": "https://10ml.com/notes/jasmine?utm_source=mcp&utm_medium=ai-assistant&utm_campaign=get_perfume"
+                      }
+                    ],
+                    "profile": "full"
+                  },
+                  "house_info": {
+                    "name": "Creed",
+                    "country": "France",
+                    "type": "niche",
+                    "style": "Historic house with elegant, fresh and refined perfumes, famously for fruity-woody modern classics."
+                  },
+                  "similar": [
+                    {
+                      "id": "armaf-club-de-nuit-intense-man-parfum",
+                      "name": "Club de Nuit Intense Man Parfum",
+                      "house": "Armaf",
+                      "closeness": "very close",
+                      "shared_notes": [
+                        "pineapple",
+                        "bergamot",
+                        "apple"
+                      ],
+                      "url": "https://10ml.com/search?q=Armaf%20Club%20de%20Nuit%20Intense%20Man&utm_source=mcp&utm_medium=ai-assistant&utm_campaign=get_perfume"
+                    },
+                    {
+                      "id": "armaf-club-de-nuit-intense-man",
+                      "name": "Club de Nuit Intense Man EDT",
+                      "house": "Armaf",
+                      "closeness": "similar vibe",
+                      "shared_notes": [
+                        "pineapple",
+                        "bergamot",
+                        "apple"
+                      ],
+                      "url": "https://10ml.com/search?q=Armaf%20Club%20de%20Nuit%20Intense%20Man&utm_source=mcp&utm_medium=ai-assistant&utm_campaign=get_perfume"
+                    },
+                    {
+                      "id": "nishane-hacivat-extrait",
+                      "name": "Hacivat",
+                      "house": "Nishane",
+                      "closeness": "similar vibe",
+                      "shared_notes": [
+                        "pineapple",
+                        "bergamot",
+                        "jasmine"
+                      ],
+                      "url": "https://10ml.com/search?q=Nishane%20Hacivat&utm_source=mcp&utm_medium=ai-assistant&utm_campaign=get_perfume"
+                    }
+                  ],
+                  "alternatives": [
+                    {
+                      "name": "Armaf Club de Nuit Intense Man",
+                      "closeness": "very close",
+                      "why": "Pineapple, lemon, birch smoke and musk make it smell similar, a popular alternative at a different weight.",
+                      "id": "armaf-club-de-nuit-intense-man-parfum"
+                    },
+                    {
+                      "name": "Al Haramain L'Aventure",
+                      "closeness": "very close",
+                      "why": "Fruity-smoky opening over woods and musk follows the same blueprint.",
+                      "id": "al-haramain-laventure"
+                    },
+                    {
+                      "name": "Afnan Supremacy Silver",
+                      "closeness": "similar vibe",
+                      "why": "Fresh fruit over smoky woods and musk gives a similar vibe.",
+                      "id": "afnan-supremacy-silver"
+                    }
+                  ],
+                  "guides": [
+                    {
+                      "type": "guide",
+                      "title": "Creed Aventus Dupes 2026: 4 Clones vs the Original",
+                      "url": "https://10ml.com/guides/creed-aventus-dupes?utm_source=mcp&utm_medium=ai-assistant&utm_campaign=get_perfume"
+                    }
+                  ],
+                  "source": "10ML Fragrance Index"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found: the body carries closest suggestions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/similar": {
+      "get": {
+        "operationId": "findSimilarPerfumes",
+        "summary": "Find similar perfumes",
+        "description": "Find perfumes and colognes that smell like one the person already likes, ranked by shared notes, accords and style, each saying exactly what it shares and how close it is (very close, similar vibe, same spirit). Works from a perfume in the index (name and house, or id) OR from free notes/accords for any other fragrance. Steer the result: fresher, sweeter, darker, lighter, longer_lasting or more_projection. Use for 'something like Baccarat Rouge 540', 'smells like Sauvage but fresher' or 'a scent with saffron and cedar'. Not for editorial dupes of a famous perfume from other houses (use find_perfume_alternatives) and not for free-text discovery (use search_perfumes).",
+        "tags": [
+          "10ML Fragrance Index"
+        ],
+        "parameters": [
+          {
+            "name": "perfume",
+            "in": "query",
+            "required": false,
+            "description": "A perfume by name, optionally with its house, e.g. \"Baccarat Rouge 540\", \"Dior Sauvage\", \"Delina\". Or pass an id from another tool.",
+            "schema": {
+              "type": "string",
+              "maxLength": 120
+            }
+          },
+          {
+            "name": "house",
+            "in": "query",
+            "required": false,
+            "description": "House of the perfume when the name alone is ambiguous, e.g. \"Maison Francis Kurkdjian\"",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "notes",
+            "in": "query",
+            "required": false,
+            "description": "Known notes of the starting perfume, for perfumes outside the index. Example: [\"jasmine\",\"saffron\",\"ambergris\",\"cedar\"] Comma-separated list.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "accords",
+            "in": "query",
+            "required": false,
+            "description": "Known accords of the starting perfume. Example: [\"amber\",\"woody\",\"sweet\"] Comma-separated list.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "steer",
+            "in": "query",
+            "required": false,
+            "description": "Move away from the starting point in one direction: fresher, sweeter, darker, lighter, longer_lasting (needs a perfume in the index) or more_projection (same).",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "fresher",
+                "sweeter",
+                "darker",
+                "lighter",
+                "longer_lasting",
+                "more_projection"
+              ]
+            }
+          },
+          {
+            "name": "gender",
+            "in": "query",
+            "required": false,
+            "description": "Only return perfumes for this audience (men and women include unisex)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "men",
+                "women",
+                "unisex"
+              ]
+            }
+          },
+          {
+            "name": "other_houses_only",
+            "in": "query",
+            "required": false,
+            "description": "True to leave out perfumes from the same house as the starting perfume",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Results per page.",
+            "schema": {
+              "default": 8,
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 15
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "description": "next_cursor from the previous page.",
+            "schema": {
+              "type": "string",
+              "maxLength": 64
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "description": "concise (default) or detailed (adds pyramid, seasons, occasions, longevity).",
+            "schema": {
+              "default": "concise",
+              "type": "string",
+              "enum": [
+                "concise",
+                "detailed"
+              ]
+            }
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": false,
+            "description": "Language of the 10ml.com links and labels.",
+            "schema": {
+              "default": "en",
+              "type": "string",
+              "enum": [
+                "en",
+                "de",
+                "fr",
+                "es",
+                "it",
+                "ro",
+                "el",
+                "hu",
+                "cs",
+                "pl",
+                "nl",
+                "pt",
+                "sv",
+                "da",
+                "fi",
+                "bg",
+                "hr"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "number",
+                      "description": "How many results matched in all"
+                    },
+                    "next_cursor": {
+                      "description": "Pass as cursor to get the next page; absent on the last page",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Guidance when the result is empty, partial or needs a follow-up tool",
+                      "type": "string"
+                    },
+                    "target": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "house": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "in_index": {
+                          "type": "boolean"
+                        },
+                        "id": {
+                          "type": "string"
+                        },
+                        "notes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "accords": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "house",
+                        "in_index",
+                        "notes",
+                        "accords"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "perfume": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "Stable Fragrance Index id, usable with get_perfume and find_similar_perfumes"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "house": {
+                                "type": "string"
+                              },
+                              "year": {
+                                "description": "Launch year when known",
+                                "type": "number"
+                              },
+                              "gender": {
+                                "type": "string",
+                                "enum": [
+                                  "men",
+                                  "women",
+                                  "unisex"
+                                ]
+                              },
+                              "family": {
+                                "type": "string",
+                                "description": "Fragrance family, e.g. \"amber floral\""
+                              },
+                              "accords": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "description": "Main accords, strongest first"
+                              },
+                              "key_notes": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "description": "The defining notes (empty when no pyramid is published)"
+                              },
+                              "character": {
+                                "type": "string",
+                                "description": "One-sentence description by 10ML's fragrance editors"
+                              },
+                              "links": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "enum": [
+                                        "try",
+                                        "guide",
+                                        "note"
+                                      ]
+                                    },
+                                    "title": {
+                                      "type": "string"
+                                    },
+                                    "url": {
+                                      "type": "string",
+                                      "description": "A 10ml.com link in the requested locale"
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "title",
+                                    "url"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                "description": "1-3 relevant 10ml.com links"
+                              },
+                              "profile": {
+                                "type": "string",
+                                "enum": [
+                                  "full",
+                                  "core"
+                                ]
+                              },
+                              "concentration": {
+                                "type": "string"
+                              },
+                              "pyramid": {
+                                "type": "object",
+                                "properties": {
+                                  "top": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "heart": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "base": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "top",
+                                  "heart",
+                                  "base"
+                                ],
+                                "additionalProperties": false
+                              },
+                              "seasons": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "occasions": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "styles": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "longevity": {
+                                "description": "1 (short) to 5 (very long)",
+                                "type": "number"
+                              },
+                              "projection": {
+                                "description": "1 (skin scent) to 5 (fills a room)",
+                                "type": "number"
+                              },
+                              "perfumers": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "other_versions": {
+                                "description": "Ids of other concentrations or flankers of the same perfume in the index",
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "house",
+                              "gender",
+                              "family",
+                              "accords",
+                              "key_notes",
+                              "character",
+                              "links",
+                              "profile"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "closeness": {
+                            "type": "string",
+                            "enum": [
+                              "very close",
+                              "similar vibe",
+                              "same spirit"
+                            ]
+                          },
+                          "shared_notes": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "shared_accords": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "why": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "perfume",
+                          "closeness",
+                          "shared_notes",
+                          "shared_accords",
+                          "why"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "unrecognised_notes": {
+                      "description": "Notes that are not in the index vocabulary and were ignored",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "source": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "total",
+                    "target",
+                    "results",
+                    "source"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "target": {
+                    "name": "Baccarat Rouge 540",
+                    "house": "Maison Francis Kurkdjian",
+                    "in_index": true,
+                    "id": "maison-francis-kurkdjian-baccarat-rouge-540-edp",
+                    "notes": [
+                      "saffron",
+                      "jasmine",
+                      "amberwood"
+                    ],
+                    "accords": [
+                      "amber",
+                      "woody",
+                      "sweet"
+                    ]
+                  },
+                  "results": [
+                    {
+                      "perfume": {
+                        "id": "afnan-adwaa-al-sharq",
+                        "name": "Adwaa Al Sharq",
+                        "house": "Afnan",
+                        "gender": "unisex",
+                        "family": "Oriental woody",
+                        "accords": [
+                          "saffron",
+                          "amber",
+                          "woody"
+                        ],
+                        "key_notes": [
+                          "amberwood",
+                          "ambergris",
+                          "fir resin"
+                        ],
+                        "character": "Saffron, jasmine and caramel lead into amberwood and ambergris, closing on fir resin and cedar.",
+                        "links": [
+                          {
+                            "type": "try",
+                            "title": "Try it at 10ML",
+                            "url": "https://10ml.com/search?q=Afnan%20Adwaa%20Al%20Sharq&utm_source=mcp&utm_medium=ai-assistant&utm_campaign=find_similar_perfumes"
+                          },
+                          {
+                            "type": "note",
+                            "title": "Saffron on 10ML",
+                            "url": "https://10ml.com/notes/saffron?utm_source=mcp&utm_medium=ai-assistant&utm_campaign=find_similar_perfumes"
+                          }
+                        ],
+                        "profile": "core"
+                      },
+                      "closeness": "very close",
+                      "shared_notes": [
+                        "saffron",
+                        "jasmine",
+                        "amberwood"
+                      ],
+                      "shared_accords": [
+                        "amber",
+                        "woody",
+                        "sweet"
+                      ],
+                      "why": "shares saffron, jasmine, amberwood, ambergris"
+                    },
+                    {
+                      "perfume": {
+                        "id": "orientica-amber-rouge-edp",
+                        "name": "Amber Rouge",
+                        "house": "Orientica",
+                        "gender": "unisex",
+                        "family": "Amber woody",
+                        "accords": [
+                          "amber",
+                          "woody",
+                          "saffron"
+                        ],
+                        "key_notes": [
+                          "amberwood",
+                          "ambergris",
+                          "cedar"
+                        ],
+                        "character": "A radiant saffron and jasmine over airy amberwood and cedar, glowing and sweet, in the spirit of Baccarat Rouge 540.",
+                        "links": [
+                          {
+                            "type": "try",
+                            "title": "Try it at 10ML",
+                            "url": "https://10ml.com/search?q=Orientica%20Amber%20Rouge&utm_source=mcp&utm_medium=ai-assistant&utm_campaign=find_similar_perfumes"
+                          },
+                          {
+                            "type": "note",
+                            "title": "Saffron on 10ML",
+                            "url": "https://10ml.com/notes/saffron?utm_source=mcp&utm_medium=ai-assistant&utm_campaign=find_similar_perfumes"
+                          }
+                        ],
+                        "profile": "core"
+                      },
+                      "closeness": "very close",
+                      "shared_notes": [
+                        "saffron",
+                        "jasmine",
+                        "amberwood"
+                      ],
+                      "shared_accords": [
+                        "amber",
+                        "woody",
+                        "sweet"
+                      ],
+                      "why": "shares saffron, jasmine, amberwood, ambergris"
+                    }
+                  ],
+                  "total": 14,
+                  "source": "10ML Fragrance Index",
+                  "next_cursor": "bzI"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found: the body carries closest suggestions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/alternatives": {
+      "get": {
+        "operationId": "findPerfumeAlternatives",
+        "summary": "Find alternatives to a perfume from other houses",
+        "description": "The editors' alternatives (dupes) to a famous perfume or cologne, from other houses: for each, why it is close and how close (very close, similar vibe, same spirit), plus the 10ML guide that compares them. Covers about 100 iconic originals such as Creed Aventus, Baccarat Rouge 540, Delina, Sauvage, Black Opium or Santal 33. For other fragrances in the index the closest options from different houses are computed from notes and accords. Use for 'dupe of X', 'alternative to X', 'what smells like X from another house'. Not for general similarity inside the index (use find_similar_perfumes) and not for free-text discovery (use search_perfumes).",
+        "tags": [
+          "10ML Fragrance Index"
+        ],
+        "parameters": [
+          {
+            "name": "perfume",
+            "in": "query",
+            "required": false,
+            "description": "The famous perfume to find alternatives for. Examples: \"Creed Aventus\", \"Baccarat Rouge 540\", \"Delina\"",
+            "schema": {
+              "type": "string",
+              "maxLength": 120
+            }
+          },
+          {
+            "name": "house",
+            "in": "query",
+            "required": false,
+            "description": "House of the original when the name is ambiguous, e.g. \"Parfums de Marly\"",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "closeness",
+            "in": "query",
+            "required": false,
+            "description": "Only alternatives at this closeness",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "very close",
+                "similar vibe",
+                "same spirit"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Results per page.",
+            "schema": {
+              "default": 6,
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "description": "next_cursor from the previous page.",
+            "schema": {
+              "type": "string",
+              "maxLength": 64
+            }
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": false,
+            "description": "Language of the 10ml.com links and labels.",
+            "schema": {
+              "default": "en",
+              "type": "string",
+              "enum": [
+                "en",
+                "de",
+                "fr",
+                "es",
+                "it",
+                "ro",
+                "el",
+                "hu",
+                "cs",
+                "pl",
+                "nl",
+                "pt",
+                "sv",
+                "da",
+                "fi",
+                "bg",
+                "hr"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "number",
+                      "description": "How many results matched in all"
+                    },
+                    "next_cursor": {
+                      "description": "Pass as cursor to get the next page; absent on the last page",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Guidance when the result is empty, partial or needs a follow-up tool",
+                      "type": "string"
+                    },
+                    "original": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "house": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "name"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "alternatives": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "house": {
+                            "type": "string"
+                          },
+                          "closeness": {
+                            "type": "string",
+                            "enum": [
+                              "very close",
+                              "similar vibe",
+                              "same spirit"
+                            ]
+                          },
+                          "why": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "Fragrance Index id when the alternative has its own profile",
+                            "type": "string"
+                          },
+                          "source": {
+                            "type": "string",
+                            "enum": [
+                              "editors",
+                              "similarity"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "closeness",
+                          "why",
+                          "source"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "guide": {
+                      "description": "The 10ML guide comparing this perfume with its alternatives",
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "try",
+                            "guide",
+                            "note"
+                          ]
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "url": {
+                          "type": "string",
+                          "description": "A 10ml.com link in the requested locale"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "title",
+                        "url"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "links": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "try",
+                              "guide",
+                              "note"
+                            ]
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string",
+                            "description": "A 10ml.com link in the requested locale"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "title",
+                          "url"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "other_matches": {
+                      "description": "Other originals the query could also mean",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "source": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "total",
+                    "original",
+                    "alternatives",
+                    "links",
+                    "source"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "total": 5,
+                  "original": {
+                    "name": "Creed Aventus",
+                    "id": "creed-aventus-edp"
+                  },
+                  "alternatives": [
+                    {
+                      "name": "Armaf Club de Nuit Intense Man",
+                      "closeness": "very close",
+                      "why": "Pineapple, lemon, birch smoke and musk make it smell similar, a popular alternative at a different weight.",
+                      "id": "armaf-club-de-nuit-intense-man-parfum",
+                      "house": "Armaf",
+                      "source": "editors"
+                    },
+                    {
+                      "name": "Al Haramain L'Aventure",
+                      "closeness": "very close",
+                      "why": "Fruity-smoky opening over woods and musk follows the same blueprint.",
+                      "id": "al-haramain-laventure",
+                      "house": "Al Haramain",
+                      "source": "editors"
+                    },
+                    {
+                      "name": "Afnan Supremacy Silver",
+                      "closeness": "similar vibe",
+                      "why": "Fresh fruit over smoky woods and musk gives a similar vibe.",
+                      "id": "afnan-supremacy-silver",
+                      "house": "Afnan",
+                      "source": "editors"
+                    }
+                  ],
+                  "guide": {
+                    "type": "guide",
+                    "title": "Creed Aventus Dupes 2026: 4 Clones vs the Original",
+                    "url": "https://10ml.com/guides/creed-aventus-dupes?utm_source=mcp&utm_medium=ai-assistant&utm_campaign=find_perfume_alternatives"
+                  },
+                  "links": [
+                    {
+                      "type": "guide",
+                      "title": "Creed Aventus Dupes 2026: 4 Clones vs the Original",
+                      "url": "https://10ml.com/guides/creed-aventus-dupes?utm_source=mcp&utm_medium=ai-assistant&utm_campaign=find_perfume_alternatives"
+                    },
+                    {
+                      "type": "try",
+                      "title": "Try it at 10ML",
+                      "url": "https://10ml.com/search?q=Creed%20Aventus&utm_source=mcp&utm_medium=ai-assistant&utm_campaign=find_perfume_alternatives"
+                    }
+                  ],
+                  "source": "10ML Fragrance Index"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found: the body carries closest suggestions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/notes/{id}": {
+      "get": {
+        "operationId": "explainNote",
+        "summary": "Explain a note",
+        "description": "Explain a fragrance note or perfume ingredient: what it smells like, its family and mood, where it comes from, which notes it pairs with, similar notes, famous perfumes where it leads and a link to the 10ML note page or guide when one exists. Covers about 285 notes in many spellings and languages. Use for 'what does ambroxan smell like', 'what is oud', 'what goes with bergamot', 'is iso e super a note'. Not for listing every perfume with the note (use perfumes_by_note) and not for general terms like EDP or sillage (use explain_perfume_term).",
+        "tags": [
+          "10ML Fragrance Index"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The note. Examples: \"ambroxan\", \"oud\", \"sandalwood\", \"Bergamotte\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "description": "concise (default) or detailed (adds pyramid, seasons, occasions, longevity).",
+            "schema": {
+              "default": "concise",
+              "type": "string",
+              "enum": [
+                "concise",
+                "detailed"
+              ]
+            }
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": false,
+            "description": "Language of the 10ml.com links and labels.",
+            "schema": {
+              "default": "en",
+              "type": "string",
+              "enum": [
+                "en",
+                "de",
+                "fr",
+                "es",
+                "it",
+                "ro",
+                "el",
+                "hu",
+                "cs",
+                "pl",
+                "nl",
+                "pt",
+                "sv",
+                "da",
+                "fi",
+                "bg",
+                "hr"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "found": {
+                      "type": "boolean"
+                    },
+                    "note": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "family": {
+                          "type": "string"
+                        },
+                        "origin": {
+                          "type": "string"
+                        },
+                        "smells_like": {
+                          "type": "string"
+                        },
+                        "mood": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "also_called": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "pairs_with": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "similar_notes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "family",
+                        "origin",
+                        "smells_like",
+                        "mood",
+                        "also_called",
+                        "pairs_with",
+                        "similar_notes"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "famous_perfumes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Stable Fragrance Index id, usable with get_perfume and find_similar_perfumes"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "house": {
+                            "type": "string"
+                          },
+                          "year": {
+                            "description": "Launch year when known",
+                            "type": "number"
+                          },
+                          "gender": {
+                            "type": "string",
+                            "enum": [
+                              "men",
+                              "women",
+                              "unisex"
+                            ]
+                          },
+                          "family": {
+                            "type": "string",
+                            "description": "Fragrance family, e.g. \"amber floral\""
+                          },
+                          "accords": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Main accords, strongest first"
+                          },
+                          "key_notes": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "The defining notes (empty when no pyramid is published)"
+                          },
+                          "character": {
+                            "type": "string",
+                            "description": "One-sentence description by 10ML's fragrance editors"
+                          },
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "try",
+                                    "guide",
+                                    "note"
+                                  ]
+                                },
+                                "title": {
+                                  "type": "string"
+                                },
+                                "url": {
+                                  "type": "string",
+                                  "description": "A 10ml.com link in the requested locale"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "title",
+                                "url"
+                              ],
+                              "additionalProperties": false
+                            },
+                            "description": "1-3 relevant 10ml.com links"
+                          },
+                          "profile": {
+                            "type": "string",
+                            "enum": [
+                              "full",
+                              "core"
+                            ]
+                          },
+                          "concentration": {
+                            "type": "string"
+                          },
+                          "pyramid": {
+                            "type": "object",
+                            "properties": {
+                              "top": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "heart": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "base": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "required": [
+                              "top",
+                              "heart",
+                              "base"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "seasons": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "occasions": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "styles": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "longevity": {
+                            "description": "1 (short) to 5 (very long)",
+                            "type": "number"
+                          },
+                          "projection": {
+                            "description": "1 (skin scent) to 5 (fills a room)",
+                            "type": "number"
+                          },
+                          "perfumers": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "other_versions": {
+                            "description": "Ids of other concentrations or flankers of the same perfume in the index",
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "house",
+                          "gender",
+                          "family",
+                          "accords",
+                          "key_notes",
+                          "character",
+                          "links",
+                          "profile"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "links": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "try",
+                              "guide",
+                              "note"
+                            ]
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string",
+                            "description": "A 10ml.com link in the requested locale"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "title",
+                          "url"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "suggestions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "source": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "found",
+                    "source"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "found": true,
+                  "note": {
+                    "id": "vanilla",
+                    "name": "vanilla",
+                    "family": "gourmand",
+                    "origin": "both",
+                    "smells_like": "Warm, creamy, sweet and comforting, like custard and cured pods.",
+                    "mood": "comforting, sweet, warm",
+                    "also_called": [
+                      "vaniglia",
+                      "Vanille",
+                      "vanille"
+                    ],
+                    "pairs_with": [
+                      "tonka bean",
+                      "amber",
+                      "sandalwood"
+                    ],
+                    "similar_notes": [
+                      "tonka bean",
+                      "coumarin",
+                      "vanillin"
+                    ]
+                  },
+                  "famous_perfumes": [
+                    {
+                      "id": "creed-aventus-edp",
+                      "name": "Aventus",
+                      "house": "Creed",
+                      "year": 2010,
+                      "gender": "men",
+                      "family": "Chypre fruity",
+                      "accords": [
+                        "fruity",
+                        "woody",
+                        "smoky"
+                      ],
+                      "key_notes": [
+                        "birch",
+                        "jasmine",
+                        "musk"
+                      ],
+                      "character": "A confident blend of juicy pineapple and smoky birch over mossy musk. The modern benchmark for a polished, success-flavoured masculine.",
+                      "links": [
+                        {
+                          "type": "try",
+                          "title": "Try it at 10ML",
+                          "url": "https://10ml.com/search?q=Creed%20Aventus&utm_source=mcp&utm_medium=ai-assistant&utm_campaign=explain_note"
+                        },
+                        {
+                          "type": "guide",
+                          "title": "Creed Aventus Dupes 2026: 4 Clones vs the Original",
+                          "url": "https://10ml.com/guides/creed-aventus-dupes?utm_source=mcp&utm_medium=ai-assistant&utm_campaign=explain_note"
+                        },
+                        {
+                          "type": "note",
+                          "title": "Jasmine on 10ML",
+                          "url": "https://10ml.com/notes/jasmine?utm_source=mcp&utm_medium=ai-assistant&utm_campaign=explain_note"
+                        }
+                      ],
+                      "profile": "full"
+                    },
+                    {
+                      "id": "parfums-de-marly-layton-edp",
+                      "name": "Layton",
+                      "house": "Parfums de Marly",
+                      "year": 2016,
+                      "gender": "men",
+                      "family": "Aromatic spicy",
+                      "accords": [
+                        "apple",
+                        "vanilla",
+                        "spicy"
+                      ],
+                      "key_notes": [
+                        "geranium",
+                        "violet",
+                        "vanilla"
+                      ],
+                      "character": "A juicy apple and lavender opening melting into creamy vanilla and warm spice, plush, versatile and crowd-pleasing.",
+                      "links": [
+                        {
+                          "type": "try",
+                          "title": "Try it at 10ML",
+                          "url": "https://10ml.com/search?q=Parfums%20de%20Marly%20Layton&utm_source=mcp&utm_medium=ai-assistant&utm_campaign=explain_note"
+                        },
+                        {
+                          "type": "guide",
+                          "title": "Parfums de Marly Layton Dupes 2026: 6 Clones Compared",
+                          "url": "https://10ml.com/guides/layton-dupes?utm_source=mcp&utm_medium=ai-assistant&utm_campaign=explain_note"
+                        },
+                        {
+                          "type": "note",
+                          "title": "Apple on 10ML",
+                          "url": "https://10ml.com/notes/apple?utm_source=mcp&utm_medium=ai-assistant&utm_campaign=explain_note"
+                        }
+                      ],
+                      "profile": "full"
+                    }
+                  ],
+                  "links": [
+                    {
+                      "type": "note",
+                      "title": "Vanilla on 10ML",
+                      "url": "https://10ml.com/notes/vanilla?utm_source=mcp&utm_medium=ai-assistant&utm_campaign=explain_note"
+                    },
+                    {
+                      "type": "guide",
+                      "title": "Best vanilla perfume: 17 picks by style, for him and her",
+                      "url": "https://10ml.com/guides/best-vanilla-perfumes?utm_source=mcp&utm_medium=ai-assistant&utm_campaign=explain_note"
+                    },
+                    {
+                      "type": "try",
+                      "title": "Try it at 10ML",
+                      "url": "https://10ml.com/search?q=vanilla%20perfume&utm_source=mcp&utm_medium=ai-assistant&utm_campaign=explain_note"
+                    }
+                  ],
+                  "source": "10ML Fragrance Index"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found: the body carries closest suggestions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/houses": {
+      "get": {
+        "operationId": "listHouses",
+        "summary": "List perfume houses",
+        "description": "Browse the perfume houses and fragrance brands in the 10ML Fragrance Index with country, type (designer, niche, middle-eastern, indie, celebrity), perfumes profiled and what each is known for. Filter by type, country or a name fragment. Use when someone wants to explore brands, find niche or Middle Eastern houses, or see which houses are covered. Not for one house's full profile (use get_house) and not for perfumes (use search_perfumes).",
+        "tags": [
+          "10ML Fragrance Index"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "description": "Only houses of this type",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "designer",
+                "niche",
+                "middle-eastern",
+                "indie",
+                "celebrity"
+              ]
+            }
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "required": false,
+            "description": "Only houses from this country, e.g. \"France\", \"Italy\", \"United Arab Emirates\"",
+            "schema": {
+              "type": "string",
+              "maxLength": 40
+            }
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "description": "Part of a house name, e.g. \"tom\" or \"maison\"",
+            "schema": {
+              "type": "string",
+              "maxLength": 60
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Results per page.",
+            "schema": {
+              "default": 20,
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "description": "next_cursor from the previous page.",
+            "schema": {
+              "type": "string",
+              "maxLength": 64
+            }
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": false,
+            "description": "Language of the 10ml.com links and labels.",
+            "schema": {
+              "default": "en",
+              "type": "string",
+              "enum": [
+                "en",
+                "de",
+                "fr",
+                "es",
+                "it",
+                "ro",
+                "el",
+                "hu",
+                "cs",
+                "pl",
+                "nl",
+                "pt",
+                "sv",
+                "da",
+                "fi",
+                "bg",
+                "hr"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "number",
+                      "description": "How many results matched in all"
+                    },
+                    "next_cursor": {
+                      "description": "Pass as cursor to get the next page; absent on the last page",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Guidance when the result is empty, partial or needs a follow-up tool",
+                      "type": "string"
+                    },
+                    "houses": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "country": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "founded": {
+                            "type": "number"
+                          },
+                          "perfumes_in_index": {
+                            "type": "number"
+                          },
+                          "known_for": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "type",
+                          "perfumes_in_index",
+                          "known_for"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "source": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "total",
+                    "houses",
+                    "source"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "total": 25,
+                  "houses": [
+                    {
+                      "id": "lattafa",
+                      "name": "Lattafa",
+                      "country": "United Arab Emirates",
+                      "type": "middle-eastern",
+                      "founded": 1992,
+                      "perfumes_in_index": 200,
+                      "known_for": [
+                        "Khamrah",
+                        "Yara",
+                        "Asad"
+                      ]
+                    },
+                    {
+                      "id": "al-haramain",
+                      "name": "Al Haramain",
+                      "country": "Saudi Arabia",
+                      "type": "middle-eastern",
+                      "perfumes_in_index": 159,
+                      "known_for": [
+                        "Amber Oud Gold Edition",
+                        "L'Aventure",
+                        "Detour Noir"
+                      ]
+                    }
+                  ],
+                  "next_cursor": "bzI",
+                  "source": "10ML Fragrance Index"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found: the body carries closest suggestions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/houses/{id}": {
+      "get": {
+        "operationId": "getHouse",
+        "summary": "Get one perfume house",
+        "description": "Profile of a perfume house or fragrance brand: country, founded year, style (designer, niche, Middle Eastern, indie), what it is known for, its signature perfumes in the index and a link to explore it at 10ML. Understands nicknames (YSL, MFK, PDM, Paco Rabanne). Use for 'tell me about Creed', 'what is Amouage known for' or 'best Dior perfumes'. Not for browsing all houses (use list_houses) and not for one perfume (use get_perfume).",
+        "tags": [
+          "10ML Fragrance Index"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The house. Examples: \"Creed\", \"YSL\", \"Maison Francis Kurkdjian\", \"Parfums de Marly\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "description": "concise (default) or detailed (adds pyramid, seasons, occasions, longevity).",
+            "schema": {
+              "default": "concise",
+              "type": "string",
+              "enum": [
+                "concise",
+                "detailed"
+              ]
+            }
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": false,
+            "description": "Language of the 10ml.com links and labels.",
+            "schema": {
+              "default": "en",
+              "type": "string",
+              "enum": [
+                "en",
+                "de",
+                "fr",
+                "es",
+                "it",
+                "ro",
+                "el",
+                "hu",
+                "cs",
+                "pl",
+                "nl",
+                "pt",
+                "sv",
+                "da",
+                "fi",
+                "bg",
+                "hr"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "found": {
+                      "type": "boolean"
+                    },
+                    "house": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "country": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        },
+                        "founded": {
+                          "type": "number"
+                        },
+                        "perfumes_in_index": {
+                          "type": "number"
+                        },
+                        "known_for": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "style": {
+                          "type": "string"
+                        },
+                        "aliases": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "type",
+                        "perfumes_in_index",
+                        "known_for",
+                        "style",
+                        "aliases"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "signature_perfumes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Stable Fragrance Index id, usable with get_perfume and find_similar_perfumes"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "house": {
+                            "type": "string"
+                          },
+                          "year": {
+                            "description": "Launch year when known",
+                            "type": "number"
+                          },
+                          "gender": {
+                            "type": "string",
+                            "enum": [
+                              "men",
+                              "women",
+                              "unisex"
+                            ]
+                          },
+                          "family": {
+                            "type": "string",
+                            "description": "Fragrance family, e.g. \"amber floral\""
+                          },
+                          "accords": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Main accords, strongest first"
+                          },
+                          "key_notes": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "The defining notes (empty when no pyramid is published)"
+                          },
+                          "character": {
+                            "type": "string",
+                            "description": "One-sentence description by 10ML's fragrance editors"
+                          },
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "try",
+                                    "guide",
+                                    "note"
+                                  ]
+                                },
+                                "title": {
+                                  "type": "string"
+                                },
+                                "url": {
+                                  "type": "string",
+                                  "description": "A 10ml.com link in the requested locale"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "title",
+                                "url"
+                              ],
+                              "additionalProperties": false
+                            },
+                            "description": "1-3 relevant 10ml.com links"
+                          },
+                          "profile": {
+                            "type": "string",
+                            "enum": [
+                              "full",
+                              "core"
+                            ]
+                          },
+                          "concentration": {
+                            "type": "string"
+                          },
+                          "pyramid": {
+                            "type": "object",
+                            "properties": {
+                              "top": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "heart": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "base": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "required": [
+                              "top",
+                              "heart",
+                              "base"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "seasons": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "occasions": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "styles": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "longevity": {
+                            "description": "1 (short) to 5 (very long)",
+                            "type": "number"
+                          },
+                          "projection": {
+                            "description": "1 (skin scent) to 5 (fills a room)",
+                            "type": "number"
+                          },
+                          "perfumers": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "other_versions": {
+                            "description": "Ids of other concentrations or flankers of the same perfume in the index",
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "house",
+                          "gender",
+                          "family",
+                          "accords",
+                          "key_notes",
+                          "character",
+                          "links",
+                          "profile"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "links": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "try",
+                              "guide",
+                              "note"
+                            ]
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string",
+                            "description": "A 10ml.com link in the requested locale"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "title",
+                          "url"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "suggestions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "source": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "found",
+                    "source"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "found": true,
+                  "house": {
+                    "id": "dior",
+                    "name": "Dior",
+                    "country": "France",
+                    "type": "designer",
+                    "founded": 1946,
+                    "perfumes_in_index": 49,
+                    "known_for": [
+                      "Sauvage",
+                      "J'adore",
+                      "Miss Dior"
+                    ],
+                    "style": "Parisian couture house with a range from iconic florals to modern woods and Maison Christian Dior luxury lines.",
+                    "aliases": [
+                      "Christian Dior",
+                      "Parfums Christian Dior"
+                    ]
+                  },
+                  "signature_perfumes": [
+                    {
+                      "id": "dior-fahrenheit",
+                      "name": "Fahrenheit",
+                      "house": "Dior",
+                      "year": 1988,
+                      "gender": "men",
+                      "family": "Woody aromatic",
+                      "accords": [
+                        "leather",
+                        "woody",
+                        "floral"
+                      ],
+                      "key_notes": [
+                        "nutmeg",
+                        "violet leaf",
+                        "leather"
+                      ],
+                      "character": "A cult 80s scent with an unusual violet-and-petrol edge, beloved for its leathery character.",
+                      "links": [
+                        {
+                          "type": "try",
+                          "title": "Try it at 10ML",
+                          "url": "https://10ml.com/search?q=Dior%20Fahrenheit&utm_source=mcp&utm_medium=ai-assistant&utm_campaign=get_house"
+                        },
+                        {
+                          "type": "guide",
+                          "title": "Dior Fahrenheit Dupes 2026: 6 Clones vs the Original",
+                          "url": "https://10ml.com/guides/dior-dupes?utm_source=mcp&utm_medium=ai-assistant&utm_campaign=get_house"
+                        },
+                        {
+                          "type": "note",
+                          "title": "Lavender on 10ML",
+                          "url": "https://10ml.com/notes/lavender?utm_source=mcp&utm_medium=ai-assistant&utm_campaign=get_house"
+                        }
+                      ],
+                      "profile": "full"
+                    }
+                  ],
+                  "links": [
+                    {
+                      "type": "try",
+                      "title": "Explore Dior at 10ML",
+                      "url": "https://10ml.com/search?q=Dior&utm_source=mcp&utm_medium=ai-assistant&utm_campaign=get_house"
+                    },
+                    {
+                      "type": "guide",
+                      "title": "Best Dior perfume: for women, men and to share",
+                      "url": "https://10ml.com/guides/best-dior-perfumes?utm_source=mcp&utm_medium=ai-assistant&utm_campaign=get_house"
+                    }
+                  ],
+                  "source": "10ML Fragrance Index"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found: the body carries closest suggestions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/guides": {
+      "get": {
+        "operationId": "searchGuides",
+        "summary": "Search 10ML guides",
+        "description": "Find 10ML's perfume and fragrance guides to read or cite: how-tos (where to spray, finding a signature scent, making perfume last), notes explained, house guides, lists, and alternatives guides that compare famous perfumes with similar ones from other houses. Returns title, type and a link per locale. Use whenever you want a source to cite or a deeper read ('how to layer perfume', 'best oud perfumes', 'Creed Aventus dupes guide'). Not for facts about a perfume (use get_perfume) and not for note definitions (use explain_note).",
+        "tags": [
+          "10ML Fragrance Index"
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "description": "What the guide is about. Examples: \"how to make perfume last\", \"oud\", \"Creed Aventus dupes\", \"gift\". Omit to browse.",
+            "schema": {
+              "type": "string",
+              "maxLength": 120
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "description": "how-to, list (rankings/comparisons), alternatives (dupes guides), note (a note explained), house (a house mapped)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "how-to",
+                "list",
+                "alternatives",
+                "note",
+                "house"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Results per page.",
+            "schema": {
+              "default": 8,
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 20
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "description": "next_cursor from the previous page.",
+            "schema": {
+              "type": "string",
+              "maxLength": 64
+            }
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": false,
+            "description": "Language of the 10ml.com links and labels.",
+            "schema": {
+              "default": "en",
+              "type": "string",
+              "enum": [
+                "en",
+                "de",
+                "fr",
+                "es",
+                "it",
+                "ro",
+                "el",
+                "hu",
+                "cs",
+                "pl",
+                "nl",
+                "pt",
+                "sv",
+                "da",
+                "fi",
+                "bg",
+                "hr"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "number",
+                      "description": "How many results matched in all"
+                    },
+                    "next_cursor": {
+                      "description": "Pass as cursor to get the next page; absent on the last page",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Guidance when the result is empty, partial or needs a follow-up tool",
+                      "type": "string"
+                    },
+                    "guides": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "topics": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "url": {
+                            "type": "string"
+                          },
+                          "translated": {
+                            "type": "boolean",
+                            "description": "False when the guide is only available in English (the url is then the English page)"
+                          }
+                        },
+                        "required": [
+                          "title",
+                          "type",
+                          "topics",
+                          "translated"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "source": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "total",
+                    "guides",
+                    "source"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "total": 1,
+                  "guides": [
+                    {
+                      "title": "Perfume layering guide: rules and pairings",
+                      "type": "how-to",
+                      "topics": [
+                        "layering"
+                      ],
+                      "url": "https://10ml.com/guides/perfume-layering-guide?utm_source=mcp&utm_medium=ai-assistant&utm_campaign=search_guides",
+                      "translated": true
+                    }
+                  ],
+                  "source": "10ML Fragrance Index"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found: the body carries closest suggestions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

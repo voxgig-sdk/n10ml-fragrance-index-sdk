@@ -1,0 +1,78 @@
+-- Typed models for the N10mlFragranceIndex SDK (LuaLS annotations).
+--
+-- GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+-- params (op.<name>.points[].g.params[]). Field/param types come from the
+-- canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
+-- @voxgig/apidef VALID_CANON). Annotations only — no runtime effect. Do not
+-- edit by hand.
+
+---@class N10MlFragranceIndex
+---@field accords table
+---@field alternatives? table
+---@field character string
+---@field closeness string
+---@field concentration? string
+---@field country? string
+---@field exact boolean
+---@field family string
+---@field famous_perfumes? table
+---@field found boolean
+---@field founded? number
+---@field gender string
+---@field guide table
+---@field guides? table
+---@field house table
+---@field house_info table
+---@field id string
+---@field key_notes table
+---@field known_for table
+---@field links? table
+---@field longevity? number
+---@field message? string
+---@field name string
+---@field next_cursor? string
+---@field note table
+---@field occasions? table
+---@field original table
+---@field other_matches? table
+---@field other_versions? table
+---@field perfume table
+---@field perfumers? table
+---@field perfumes_in_index number
+---@field profile string
+---@field projection? number
+---@field pyramid table
+---@field seasons? table
+---@field shared_accords table
+---@field shared_notes table
+---@field signature_perfumes? table
+---@field similar? table
+---@field source string
+---@field styles? table
+---@field suggestions? table
+---@field title string
+---@field topics table
+---@field total number
+---@field translated boolean
+---@field type string
+---@field url? string
+---@field why string
+---@field year? number
+
+---@class N10MlFragranceIndexLoadMatch
+---@field id string
+---@field format? string
+---@field locale? string
+---@field house? string
+
+---@class N10MlFragranceIndexListMatch
+---@field closeness? string
+---@field cursor? string
+---@field house? string
+---@field limit? number
+---@field locale? string
+---@field perfume? string
+
+local M = {}
+
+return M

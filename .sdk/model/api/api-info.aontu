@@ -1,0 +1,26 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      auth: false
+      contact: {
+        email: "contact@10ml.com"
+        name: "10ML Team"
+        url: "https://10ml.com"
+      }
+      description: "Free perfume API and fragrance notes API from the 10ML Fragrance Index: 6,000+ perfumes and 249 houses with note pyramids, accords, families, similar scents, alternatives from other houses, notes explained and guides, curated by 10ML's fragrance editors. The same answers as the 10ML Perfume Finder MCP server at https://mcp.10ml.com/mcp. No API key, no sign-up, read-only JSON over GET."
+      servers: [
+        {
+          url: "https://mcp.10ml.com"
+        }
+      ]
+      summary: "Free perfume API and fragrance notes API from the 10ML Fragrance Index: 6,000+ perfumes and 249 houses with note pyramids, accords, families, similar scents, alternatives from other houses, notes explained and guides, curated by 10ML's…"
+      title: "10ML Fragrance Index API"
+      version: "2.5.3"
+      website: "https://10ml.com/perfume-api"
+    }
+  }
+}
+

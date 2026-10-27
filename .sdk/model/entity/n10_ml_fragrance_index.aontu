@@ -1,0 +1,1042 @@
+# Entity: n10_ml_fragrance_index
+
+main: kit: entity: n10_ml_fragrance_index: {
+
+  alias: field: {}
+
+  fields: {
+    accords: {
+      h: "Accords"
+      n: "accords"
+      r: true
+      sh: "Main accords, strongest first"
+      t: "`$ARRAY`"
+    }
+    alternatives: {
+      h: "Alternatives"
+      n: "alternatives"
+      op: {
+        list: {
+          req: true
+          type: "`$ARRAY`"
+        }
+      }
+      r: false
+      t: "`$ARRAY`"
+    }
+    character: {
+      h: "Character"
+      n: "character"
+      r: true
+      sh: "One-sentence description by 10ML's fragrance editors"
+      t: "`$STRING`"
+    }
+    closeness: {
+      h: "Closeness"
+      n: "closeness"
+      r: true
+      t: "`$STRING`"
+    }
+    concentration: {
+      h: "Concentration"
+      n: "concentration"
+      r: false
+      t: "`$STRING`"
+    }
+    country: {
+      h: "Country"
+      n: "country"
+      r: false
+      t: "`$STRING`"
+    }
+    exact: {
+      h: "Exact"
+      n: "exact"
+      r: true
+      sh: "False when this is a closest-match guess"
+      t: "`$BOOLEAN`"
+    }
+    family: {
+      h: "Family"
+      n: "family"
+      r: true
+      sh: "Fragrance family, e.g."
+      t: "`$STRING`"
+    }
+    famous_perfumes: {
+      h: "Famous Perfumes"
+      n: "famous_perfumes"
+      r: false
+      t: "`$ARRAY`"
+    }
+    found: {
+      h: "Found"
+      n: "found"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    founded: {
+      h: "Founded"
+      n: "founded"
+      r: false
+      t: "`$NUMBER`"
+    }
+    gender: {
+      h: "Gender"
+      n: "gender"
+      r: true
+      t: "`$STRING`"
+    }
+    guide: {
+      h: "Guide"
+      n: "guide"
+      r: true
+      sh: "The 10ML guide comparing this perfume with its alternatives"
+      t: "`$OBJECT`"
+    }
+    guides: {
+      h: "Guides"
+      n: "guides"
+      r: false
+      t: "`$ARRAY`"
+    }
+    house: {
+      h: "House"
+      n: "house"
+      r: true
+      t: "`$OBJECT`"
+    }
+    house_info: {
+      h: "House Info"
+      n: "house_info"
+      r: true
+      t: "`$OBJECT`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "Stable Fragrance Index id, usable with get_perfume and find_similar_perfumes"
+      t: "`$STRING`"
+    }
+    key_notes: {
+      h: "Key Notes"
+      n: "key_notes"
+      r: true
+      sh: "The defining notes (empty when no pyramid is published)"
+      t: "`$ARRAY`"
+    }
+    known_for: {
+      h: "Known For"
+      n: "known_for"
+      r: true
+      t: "`$ARRAY`"
+    }
+    links: {
+      h: "Links"
+      n: "links"
+      op: {
+        list: {
+          req: true
+          type: "`$ARRAY`"
+        }
+      }
+      r: false
+      sh: "1-3 relevant 10ml.com links"
+      t: "`$ARRAY`"
+    }
+    longevity: {
+      h: "Longevity"
+      n: "longevity"
+      r: false
+      sh: "1 (short) to 5 (very long)"
+      t: "`$NUMBER`"
+    }
+    message: {
+      h: "Message"
+      n: "message"
+      r: false
+      sh: "Guidance when the result is empty, partial or needs a follow-up tool"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      t: "`$STRING`"
+    }
+    next_cursor: {
+      h: "Next Cursor"
+      n: "next_cursor"
+      r: false
+      sh: "Pass as cursor to get the next page; absent on the last page"
+      t: "`$STRING`"
+    }
+    note: {
+      h: "Note"
+      n: "note"
+      r: true
+      t: "`$OBJECT`"
+    }
+    occasions: {
+      h: "Occasions"
+      n: "occasions"
+      r: false
+      t: "`$ARRAY`"
+    }
+    original: {
+      h: "Original"
+      n: "original"
+      r: true
+      t: "`$OBJECT`"
+    }
+    other_matches: {
+      h: "Other Matches"
+      n: "other_matches"
+      r: false
+      sh: "Other originals the query could also mean"
+      t: "`$ARRAY`"
+    }
+    other_versions: {
+      h: "Other Versions"
+      n: "other_versions"
+      r: false
+      sh: "Ids of other concentrations or flankers of the same perfume in the index"
+      t: "`$ARRAY`"
+    }
+    perfume: {
+      h: "Perfume"
+      n: "perfume"
+      r: true
+      t: "`$OBJECT`"
+    }
+    perfumers: {
+      h: "Perfumers"
+      n: "perfumers"
+      r: false
+      t: "`$ARRAY`"
+    }
+    perfumes_in_index: {
+      h: "Perfumes In Index"
+      n: "perfumes_in_index"
+      r: true
+      t: "`$NUMBER`"
+    }
+    profile: {
+      h: "Profile"
+      n: "profile"
+      r: true
+      t: "`$STRING`"
+    }
+    projection: {
+      h: "Projection"
+      n: "projection"
+      r: false
+      sh: "1 (skin scent) to 5 (fills a room)"
+      t: "`$NUMBER`"
+    }
+    pyramid: {
+      h: "Pyramid"
+      n: "pyramid"
+      r: true
+      t: "`$OBJECT`"
+    }
+    seasons: {
+      h: "Seasons"
+      n: "seasons"
+      r: false
+      t: "`$ARRAY`"
+    }
+    shared_accords: {
+      h: "Shared Accords"
+      n: "shared_accords"
+      r: true
+      t: "`$ARRAY`"
+    }
+    shared_notes: {
+      h: "Shared Notes"
+      n: "shared_notes"
+      r: true
+      t: "`$ARRAY`"
+    }
+    signature_perfumes: {
+      h: "Signature Perfumes"
+      n: "signature_perfumes"
+      r: false
+      t: "`$ARRAY`"
+    }
+    similar: {
+      h: "Similar"
+      n: "similar"
+      r: false
+      t: "`$ARRAY`"
+    }
+    source: {
+      h: "Source"
+      n: "source"
+      r: true
+      t: "`$STRING`"
+    }
+    styles: {
+      h: "Styles"
+      n: "styles"
+      r: false
+      t: "`$ARRAY`"
+    }
+    suggestions: {
+      h: "Suggestions"
+      n: "suggestions"
+      r: false
+      t: "`$ARRAY`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: true
+      t: "`$STRING`"
+    }
+    topics: {
+      h: "Topics"
+      n: "topics"
+      r: true
+      t: "`$ARRAY`"
+    }
+    total: {
+      h: "Total"
+      n: "total"
+      r: true
+      sh: "How many results matched in all"
+      t: "`$NUMBER`"
+    }
+    translated: {
+      h: "Translated"
+      n: "translated"
+      r: true
+      sh: "False when the guide is only available in English (the url is then the English page)"
+      t: "`$BOOLEAN`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: true
+      t: "`$STRING`"
+    }
+    url: {
+      h: "Url"
+      n: "url"
+      r: false
+      t: "`$STRING`"
+    }
+    why: {
+      h: "Why"
+      n: "why"
+      r: true
+      t: "`$STRING`"
+    }
+    year: {
+      h: "Year"
+      n: "year"
+      r: false
+      sh: "Launch year when known"
+      t: "`$NUMBER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "n10_ml_fragrance_index"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/alternatives"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "closeness"
+                or: "closeness"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "cursor"
+                or: "cursor"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "house"
+                or: "house"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 6
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "en"
+                k: "query"
+                n: "locale"
+                or: "locale"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "perfume"
+                or: "perfume"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/alternatives"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "alternatives"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/v1/guides"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "cursor"
+                or: "cursor"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 8
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "en"
+                k: "query"
+                n: "locale"
+                or: "locale"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "q"
+                or: "q"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "type"
+                or: "type"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/guides"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "guides"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.guides`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/v1/houses"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "country"
+                or: "country"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "cursor"
+                or: "cursor"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 20
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "en"
+                k: "query"
+                n: "locale"
+                or: "locale"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "query"
+                or: "query"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "type"
+                or: "type"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/houses"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "houses"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.houses`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/v1/perfumes"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "accord"
+                or: "accords"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "cursor"
+                or: "cursor"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "family"
+                or: "family"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "concise"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "gender"
+                or: "gender"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "house"
+                or: "house"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "iconic"
+                or: "iconic"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: 8
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "en"
+                k: "query"
+                n: "locale"
+                or: "locale"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "notes_exclude"
+                or: "notes_exclude"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "notes_include"
+                or: "notes_include"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "occasion"
+                or: "occasion"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "q"
+                or: "q"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "season"
+                or: "season"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "style"
+                or: "style"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/perfumes"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "perfumes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.results`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/v1/similar"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "accord"
+                or: "accords"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "cursor"
+                or: "cursor"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "concise"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "gender"
+                or: "gender"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "house"
+                or: "house"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 8
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "en"
+                k: "query"
+                n: "locale"
+                or: "locale"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "note"
+                or: "notes"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "other_houses_only"
+                or: "other_houses_only"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "perfume"
+                or: "perfume"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "steer"
+                or: "steer"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/similar"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "similar"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.results`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/houses/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "concise"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "en"
+                k: "query"
+                n: "locale"
+                or: "locale"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/houses/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "houses"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/v1/notes/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "concise"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "en"
+                k: "query"
+                n: "locale"
+                or: "locale"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/notes/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "notes"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/v1/perfumes/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "concise"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "house"
+                or: "house"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "en"
+                k: "query"
+                n: "locale"
+                or: "locale"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/perfumes/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "perfumes"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,72 @@
+<?php
+declare(strict_types=1);
+
+// N10mlFragranceIndex SDK utility registration
+
+require_once __DIR__ . '/../core/UtilityType.php';
+require_once __DIR__ . '/Clean.php';
+require_once __DIR__ . '/Done.php';
+require_once __DIR__ . '/MakeError.php';
+require_once __DIR__ . '/FeatureAdd.php';
+require_once __DIR__ . '/FeatureHook.php';
+require_once __DIR__ . '/FeatureInit.php';
+require_once __DIR__ . '/Fetcher.php';
+require_once __DIR__ . '/MakeFetchDef.php';
+require_once __DIR__ . '/MakeContext.php';
+require_once __DIR__ . '/MakeOptions.php';
+require_once __DIR__ . '/MakeRequest.php';
+require_once __DIR__ . '/MakeResponse.php';
+require_once __DIR__ . '/MakeResult.php';
+require_once __DIR__ . '/MakePoint.php';
+require_once __DIR__ . '/MakeSpec.php';
+require_once __DIR__ . '/MakeUrl.php';
+require_once __DIR__ . '/Param.php';
+require_once __DIR__ . '/PrepareAuth.php';
+require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
+require_once __DIR__ . '/PrepareHeaders.php';
+require_once __DIR__ . '/PrepareMethod.php';
+require_once __DIR__ . '/PrepareParams.php';
+require_once __DIR__ . '/PreparePath.php';
+require_once __DIR__ . '/PrepareQuery.php';
+require_once __DIR__ . '/ResultBasic.php';
+require_once __DIR__ . '/ResultBody.php';
+require_once __DIR__ . '/ResultHeaders.php';
+require_once __DIR__ . '/TransformRequest.php';
+require_once __DIR__ . '/TransformResponse.php';
+
+N10mlFragranceIndexUtility::setRegistrar(function (N10mlFragranceIndexUtility $u): void {
+    $u->clean = [N10mlFragranceIndexClean::class, 'call'];
+    $u->clean_add = [N10mlFragranceIndexClean::class, 'add'];
+    $u->clean_explain = [N10mlFragranceIndexDone::class, 'clean_explain'];
+    $u->done = [N10mlFragranceIndexDone::class, 'call'];
+    $u->make_error = [N10mlFragranceIndexMakeError::class, 'call'];
+    $u->feature_add = [N10mlFragranceIndexFeatureAdd::class, 'call'];
+    $u->feature_hook = [N10mlFragranceIndexFeatureHook::class, 'call'];
+    $u->feature_init = [N10mlFragranceIndexFeatureInit::class, 'call'];
+    $u->fetcher = [N10mlFragranceIndexFetcher::class, 'call'];
+    $u->make_fetch_def = [N10mlFragranceIndexMakeFetchDef::class, 'call'];
+    $u->make_context = [N10mlFragranceIndexMakeContext::class, 'call'];
+    $u->make_options = [N10mlFragranceIndexMakeOptions::class, 'call'];
+    $u->make_request = [N10mlFragranceIndexMakeRequest::class, 'call'];
+    $u->make_response = [N10mlFragranceIndexMakeResponse::class, 'call'];
+    $u->make_result = [N10mlFragranceIndexMakeResult::class, 'call'];
+    $u->make_point = [N10mlFragranceIndexMakePoint::class, 'call'];
+    $u->make_spec = [N10mlFragranceIndexMakeSpec::class, 'call'];
+    $u->make_url = [N10mlFragranceIndexMakeUrl::class, 'call'];
+    $u->param = [N10mlFragranceIndexParam::class, 'call'];
+    $u->prepare_auth = [N10mlFragranceIndexPrepareAuth::class, 'call'];
+    $u->prepare_body = [N10mlFragranceIndexPrepareBody::class, 'call'];
+    $u->prepare_headers = [N10mlFragranceIndexPrepareHeaders::class, 'call'];
+    $u->prepare_method = [N10mlFragranceIndexPrepareMethod::class, 'call'];
+    $u->prepare_params = [N10mlFragranceIndexPrepareParams::class, 'call'];
+    $u->prepare_path = [N10mlFragranceIndexPreparePath::class, 'call'];
+    $u->prepare_query = [N10mlFragranceIndexPrepareQuery::class, 'call'];
+    $u->graphql_body = [N10mlFragranceIndexGraphql::class, 'body'];
+    $u->graphql_errors = [N10mlFragranceIndexGraphql::class, 'errors'];
+    $u->result_basic = [N10mlFragranceIndexResultBasic::class, 'call'];
+    $u->result_body = [N10mlFragranceIndexResultBody::class, 'call'];
+    $u->result_headers = [N10mlFragranceIndexResultHeaders::class, 'call'];
+    $u->transform_request = [N10mlFragranceIndexTransformRequest::class, 'call'];
+    $u->transform_response = [N10mlFragranceIndexTransformResponse::class, 'call'];
+});

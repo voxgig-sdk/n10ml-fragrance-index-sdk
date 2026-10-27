@@ -1,0 +1,2436 @@
+{
+  "def": "10ml-fragrance-index_0.1.0.json",
+  "main": {
+    "def": {
+      "desc": ""
+    },
+    "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
+      "config": {
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ],
+        "headers": {
+          "content-type": "application/json"
+        },
+        "repr": "auto"
+      },
+      "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
+      "entity": {
+        "n10_ml_fragrance_index": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "accords": {
+              "a": true,
+              "h": "Accords",
+              "n": "accords",
+              "r": true,
+              "sh": "Main accords, strongest first",
+              "t": "`$ARRAY`"
+            },
+            "alternatives": {
+              "a": true,
+              "h": "Alternatives",
+              "n": "alternatives",
+              "op": {
+                "list": {
+                  "req": true,
+                  "type": "`$ARRAY`"
+                }
+              },
+              "r": false,
+              "t": "`$ARRAY`"
+            },
+            "character": {
+              "a": true,
+              "h": "Character",
+              "n": "character",
+              "r": true,
+              "sh": "One-sentence description by 10ML's fragrance editors",
+              "t": "`$STRING`"
+            },
+            "closeness": {
+              "a": true,
+              "h": "Closeness",
+              "n": "closeness",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "concentration": {
+              "a": true,
+              "h": "Concentration",
+              "n": "concentration",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "country": {
+              "a": true,
+              "h": "Country",
+              "n": "country",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "exact": {
+              "a": true,
+              "h": "Exact",
+              "n": "exact",
+              "r": true,
+              "sh": "False when this is a closest-match guess",
+              "t": "`$BOOLEAN`"
+            },
+            "family": {
+              "a": true,
+              "h": "Family",
+              "n": "family",
+              "r": true,
+              "sh": "Fragrance family, e.g.",
+              "t": "`$STRING`"
+            },
+            "famous_perfumes": {
+              "a": true,
+              "h": "Famous Perfumes",
+              "n": "famous_perfumes",
+              "r": false,
+              "t": "`$ARRAY`"
+            },
+            "found": {
+              "a": true,
+              "h": "Found",
+              "n": "found",
+              "r": true,
+              "t": "`$BOOLEAN`"
+            },
+            "founded": {
+              "a": true,
+              "h": "Founded",
+              "n": "founded",
+              "r": false,
+              "t": "`$NUMBER`"
+            },
+            "gender": {
+              "a": true,
+              "h": "Gender",
+              "n": "gender",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "guide": {
+              "a": true,
+              "h": "Guide",
+              "n": "guide",
+              "r": true,
+              "sh": "The 10ML guide comparing this perfume with its alternatives",
+              "t": "`$OBJECT`"
+            },
+            "guides": {
+              "a": true,
+              "h": "Guides",
+              "n": "guides",
+              "r": false,
+              "t": "`$ARRAY`"
+            },
+            "house": {
+              "a": true,
+              "h": "House",
+              "n": "house",
+              "r": true,
+              "t": "`$OBJECT`"
+            },
+            "house_info": {
+              "a": true,
+              "h": "House Info",
+              "n": "house_info",
+              "r": true,
+              "t": "`$OBJECT`"
+            },
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": true,
+              "sh": "Stable Fragrance Index id, usable with get_perfume and find_similar_perfumes",
+              "t": "`$STRING`"
+            },
+            "key_notes": {
+              "a": true,
+              "h": "Key Notes",
+              "n": "key_notes",
+              "r": true,
+              "sh": "The defining notes (empty when no pyramid is published)",
+              "t": "`$ARRAY`"
+            },
+            "known_for": {
+              "a": true,
+              "h": "Known For",
+              "n": "known_for",
+              "r": true,
+              "t": "`$ARRAY`"
+            },
+            "links": {
+              "a": true,
+              "h": "Links",
+              "n": "links",
+              "op": {
+                "list": {
+                  "req": true,
+                  "type": "`$ARRAY`"
+                }
+              },
+              "r": false,
+              "sh": "1-3 relevant 10ml.com links",
+              "t": "`$ARRAY`"
+            },
+            "longevity": {
+              "a": true,
+              "h": "Longevity",
+              "n": "longevity",
+              "r": false,
+              "sh": "1 (short) to 5 (very long)",
+              "t": "`$NUMBER`"
+            },
+            "message": {
+              "a": true,
+              "h": "Message",
+              "n": "message",
+              "r": false,
+              "sh": "Guidance when the result is empty, partial or needs a follow-up tool",
+              "t": "`$STRING`"
+            },
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "next_cursor": {
+              "a": true,
+              "h": "Next Cursor",
+              "n": "next_cursor",
+              "r": false,
+              "sh": "Pass as cursor to get the next page; absent on the last page",
+              "t": "`$STRING`"
+            },
+            "note": {
+              "a": true,
+              "h": "Note",
+              "n": "note",
+              "r": true,
+              "t": "`$OBJECT`"
+            },
+            "occasions": {
+              "a": true,
+              "h": "Occasions",
+              "n": "occasions",
+              "r": false,
+              "t": "`$ARRAY`"
+            },
+            "original": {
+              "a": true,
+              "h": "Original",
+              "n": "original",
+              "r": true,
+              "t": "`$OBJECT`"
+            },
+            "other_matches": {
+              "a": true,
+              "h": "Other Matches",
+              "n": "other_matches",
+              "r": false,
+              "sh": "Other originals the query could also mean",
+              "t": "`$ARRAY`"
+            },
+            "other_versions": {
+              "a": true,
+              "h": "Other Versions",
+              "n": "other_versions",
+              "r": false,
+              "sh": "Ids of other concentrations or flankers of the same perfume in the index",
+              "t": "`$ARRAY`"
+            },
+            "perfume": {
+              "a": true,
+              "h": "Perfume",
+              "n": "perfume",
+              "r": true,
+              "t": "`$OBJECT`"
+            },
+            "perfumers": {
+              "a": true,
+              "h": "Perfumers",
+              "n": "perfumers",
+              "r": false,
+              "t": "`$ARRAY`"
+            },
+            "perfumes_in_index": {
+              "a": true,
+              "h": "Perfumes In Index",
+              "n": "perfumes_in_index",
+              "r": true,
+              "t": "`$NUMBER`"
+            },
+            "profile": {
+              "a": true,
+              "h": "Profile",
+              "n": "profile",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "projection": {
+              "a": true,
+              "h": "Projection",
+              "n": "projection",
+              "r": false,
+              "sh": "1 (skin scent) to 5 (fills a room)",
+              "t": "`$NUMBER`"
+            },
+            "pyramid": {
+              "a": true,
+              "h": "Pyramid",
+              "n": "pyramid",
+              "r": true,
+              "t": "`$OBJECT`"
+            },
+            "seasons": {
+              "a": true,
+              "h": "Seasons",
+              "n": "seasons",
+              "r": false,
+              "t": "`$ARRAY`"
+            },
+            "shared_accords": {
+              "a": true,
+              "h": "Shared Accords",
+              "n": "shared_accords",
+              "r": true,
+              "t": "`$ARRAY`"
+            },
+            "shared_notes": {
+              "a": true,
+              "h": "Shared Notes",
+              "n": "shared_notes",
+              "r": true,
+              "t": "`$ARRAY`"
+            },
+            "signature_perfumes": {
+              "a": true,
+              "h": "Signature Perfumes",
+              "n": "signature_perfumes",
+              "r": false,
+              "t": "`$ARRAY`"
+            },
+            "similar": {
+              "a": true,
+              "h": "Similar",
+              "n": "similar",
+              "r": false,
+              "t": "`$ARRAY`"
+            },
+            "source": {
+              "a": true,
+              "h": "Source",
+              "n": "source",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "styles": {
+              "a": true,
+              "h": "Styles",
+              "n": "styles",
+              "r": false,
+              "t": "`$ARRAY`"
+            },
+            "suggestions": {
+              "a": true,
+              "h": "Suggestions",
+              "n": "suggestions",
+              "r": false,
+              "t": "`$ARRAY`"
+            },
+            "title": {
+              "a": true,
+              "h": "Title",
+              "n": "title",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "topics": {
+              "a": true,
+              "h": "Topics",
+              "n": "topics",
+              "r": true,
+              "t": "`$ARRAY`"
+            },
+            "total": {
+              "a": true,
+              "h": "Total",
+              "n": "total",
+              "r": true,
+              "sh": "How many results matched in all",
+              "t": "`$NUMBER`"
+            },
+            "translated": {
+              "a": true,
+              "h": "Translated",
+              "n": "translated",
+              "r": true,
+              "sh": "False when the guide is only available in English (the url is then the English page)",
+              "t": "`$BOOLEAN`"
+            },
+            "type": {
+              "a": true,
+              "h": "Type",
+              "n": "type",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "url": {
+              "a": true,
+              "h": "Url",
+              "n": "url",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "why": {
+              "a": true,
+              "h": "Why",
+              "n": "why",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "year": {
+              "a": true,
+              "h": "Year",
+              "n": "year",
+              "r": false,
+              "sh": "Launch year when known",
+              "t": "`$NUMBER`"
+            }
+          },
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "n10_ml_fragrance_index",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/alternatives",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "closeness",
+                        "or": "closeness",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "cursor",
+                        "or": "cursor",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "house",
+                        "or": "house",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": 6,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "en",
+                        "k": "query",
+                        "n": "locale",
+                        "or": "locale",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "perfume",
+                        "or": "perfume",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/alternatives",
+                  "q": {},
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "alternatives"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/guides",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "cursor",
+                        "or": "cursor",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": 8,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "en",
+                        "k": "query",
+                        "n": "locale",
+                        "or": "locale",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "q",
+                        "or": "q",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "type",
+                        "or": "type",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/guides",
+                  "q": {},
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "guides"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body.guides`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/houses",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "country",
+                        "or": "country",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "cursor",
+                        "or": "cursor",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": 20,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "en",
+                        "k": "query",
+                        "n": "locale",
+                        "or": "locale",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "query",
+                        "or": "query",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "type",
+                        "or": "type",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/houses",
+                  "q": {},
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "houses"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body.houses`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/perfumes",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "accord",
+                        "or": "accords",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "cursor",
+                        "or": "cursor",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "family",
+                        "or": "family",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "concise",
+                        "k": "query",
+                        "n": "format",
+                        "or": "format",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "gender",
+                        "or": "gender",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "house",
+                        "or": "house",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "iconic",
+                        "or": "iconic",
+                        "r": false,
+                        "t": "`$BOOLEAN`"
+                      },
+                      {
+                        "a": true,
+                        "ex": 8,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "en",
+                        "k": "query",
+                        "n": "locale",
+                        "or": "locale",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "notes_exclude",
+                        "or": "notes_exclude",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "notes_include",
+                        "or": "notes_include",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "occasion",
+                        "or": "occasion",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "q",
+                        "or": "q",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "season",
+                        "or": "season",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "style",
+                        "or": "style",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/perfumes",
+                  "q": {},
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "perfumes"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body.results`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/similar",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "accord",
+                        "or": "accords",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "cursor",
+                        "or": "cursor",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "concise",
+                        "k": "query",
+                        "n": "format",
+                        "or": "format",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "gender",
+                        "or": "gender",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "house",
+                        "or": "house",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": 8,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "en",
+                        "k": "query",
+                        "n": "locale",
+                        "or": "locale",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "note",
+                        "or": "notes",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": false,
+                        "k": "query",
+                        "n": "other_houses_only",
+                        "or": "other_houses_only",
+                        "r": false,
+                        "t": "`$BOOLEAN`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "perfume",
+                        "or": "perfume",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "steer",
+                        "or": "steer",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/similar",
+                  "q": {},
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "similar"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body.results`"
+                  }
+                }
+              ]
+            },
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/houses/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ],
+                    "query": [
+                      {
+                        "a": true,
+                        "ex": "concise",
+                        "k": "query",
+                        "n": "format",
+                        "or": "format",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "en",
+                        "k": "query",
+                        "n": "locale",
+                        "or": "locale",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/houses/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "houses"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/notes/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ],
+                    "query": [
+                      {
+                        "a": true,
+                        "ex": "concise",
+                        "k": "query",
+                        "n": "format",
+                        "or": "format",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "en",
+                        "k": "query",
+                        "n": "locale",
+                        "or": "locale",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/notes/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "notes"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/perfumes/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ],
+                    "query": [
+                      {
+                        "a": true,
+                        "ex": "concise",
+                        "k": "query",
+                        "n": "format",
+                        "or": "format",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "house",
+                        "or": "house",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "en",
+                        "k": "query",
+                        "n": "locale",
+                        "or": "locale",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/perfumes/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "perfumes"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        }
+      },
+      "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "description": "Client-side rate limiting via a token bucket",
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Rate limiting",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "description": "Automatic retry of transient failures with exponential backoff",
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Retry",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "test": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
+          },
+          "description": "In-memory mock transport for testing without a live server",
+          "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
+              "await": false
+            }
+          },
+          "name": "test",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Test transport",
+          "transport": "base",
+          "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "description": "Per-request timeout with transport abort",
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Timeout",
+          "transport": "wrap",
+          "version": "0.0.1"
+        }
+      },
+      "flow": {
+        "BasicN10MlFragranceIndexFlow": {
+          "active": true,
+          "entity": "n10_ml_fragrance_index",
+          "key$": "BasicN10MlFragranceIndexFlow",
+          "kind": "basic",
+          "name": "BasicN10MlFragranceIndexFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "n10_ml_fragrance_index_ref01"
+                  }
+                }
+              ]
+            },
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "n10_ml_fragrance_index_ref01",
+                "srcdatavar": "n10_ml_fragrance_index_ref01_data",
+                "suffix": "_dt0"
+              },
+              "m": {
+                "id": "n10_ml_fragrance_index01"
+              },
+              "o": "load",
+              "s": [],
+              "v": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-n10_ml_fragrance_index_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "info": {
+        "auth": false,
+        "contact": {
+          "email": "contact@10ml.com",
+          "name": "10ML Team",
+          "url": "https://10ml.com"
+        },
+        "description": "Free perfume API and fragrance notes API from the 10ML Fragrance Index: 6,000+ perfumes and 249 houses with note pyramids, accords, families, similar scents, alternatives from other houses, notes explained and guides, curated by 10ML's fragrance editors. The same answers as the 10ML Perfume Finder MCP server at https://mcp.10ml.com/mcp. No API key, no sign-up, read-only JSON over GET.",
+        "servers": [
+          {
+            "url": "https://mcp.10ml.com"
+          }
+        ],
+        "summary": "Free perfume API and fragrance notes API from the 10ML Fragrance Index: 6,000+ perfumes and 249 houses with note pyramids, accords, families, similar scents, alternatives from other houses, notes explained and guides, curated by 10ML's…",
+        "title": "10ML Fragrance Index API",
+        "version": "2.5.3",
+        "website": "https://10ml.com/perfume-api"
+      },
+      "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "in": "",
+          "name": "",
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "active": true,
+          "hint": "0",
+          "keys": "key,secret,token,password,passwd,authorization,cookie,credential,signature",
+          "mask": "[redacted]",
+          "min": "4",
+          "values": ""
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
+      "phase": {
+        "build": {
+          "active": true
+        },
+        "top": {
+          "active": true
+        }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
+      },
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
+      "target": {
+        "go": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "n10ml-fragrance-index",
+            "package": "",
+            "path": ""
+          },
+          "name": "go",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "n10ml-fragrance-index",
+            "package": "",
+            "path": ""
+          },
+          "name": "go-cli",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "phase": {
+            "agentguide": {
+              "active": false
+            },
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "provides": {},
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "root"
+            },
+            "version": "0.0.1"
+          },
+          "superseded": [],
+          "title": "Go CLI"
+        },
+        "go-mcp": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "n10ml-fragrance-index",
+            "package": "",
+            "path": ""
+          },
+          "name": "go-mcp",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "phase": {
+            "agentguide": {
+              "active": false
+            },
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "provides": {},
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "root"
+            },
+            "version": "0.0.1"
+          },
+          "superseded": [],
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
+        },
+        "lua": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "--"
+          },
+          "deps": {
+            "dkjson": {
+              "active": true,
+              "kind": "prod",
+              "version": "2.5"
+            }
+          },
+          "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "n10ml-fragrance-index",
+            "package": "",
+            "path": ""
+          },
+          "name": "lua",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "luarocks",
+              "package": "",
+              "state": "pending",
+              "url": "https://luarocks.org",
+              "vault": {
+                "alias": "luarocks",
+                "env": "LUAROCKS_API_KEY",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
+          "title": "Lua"
+        },
+        "php": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "n10ml-fragrance-index",
+            "package": "",
+            "path": ""
+          },
+          "name": "php",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "packagist",
+              "package": "",
+              "state": "pending",
+              "url": "https://packagist.org",
+              "vault": {
+                "alias": "packagist",
+                "env": "PACKAGIST_API_TOKEN",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
+          "title": "PHP"
+        },
+        "py": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "#"
+          },
+          "deps": {
+            "requests": {
+              "active": true,
+              "kind": "prod",
+              "version": "2.33"
+            }
+          },
+          "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "n10ml-fragrance-index",
+            "package": "",
+            "path": ""
+          },
+          "name": "py",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "pypi",
+              "package": "",
+              "state": "pending",
+              "url": "https://pypi.org",
+              "vault": {
+                "alias": "pypi",
+                "env": "",
+                "recipe": "pypi"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "#"
+          },
+          "deps": {
+            "json": {
+              "active": true,
+              "kind": "prod",
+              "version": "*"
+            }
+          },
+          "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "n10ml-fragrance-index",
+            "package": "",
+            "path": ""
+          },
+          "name": "rb",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "rubygems",
+              "package": "",
+              "state": "pending",
+              "url": "https://rubygems.org",
+              "vault": {
+                "alias": "gem",
+                "env": "",
+                "recipe": "gem"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "n10ml-fragrance-index",
+            "package": "",
+            "path": ""
+          },
+          "name": "ts",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "npm",
+              "package": "",
+              "state": "pending",
+              "url": "https://registry.npmjs.org",
+              "vault": {
+                "alias": "npm",
+                "env": "",
+                "recipe": "npm"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
+          "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": true
+        }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
+      }
+    }
+  },
+  "name": "n10ml-fragrance-index",
+  "origin": "voxgig-sdk"
+}
